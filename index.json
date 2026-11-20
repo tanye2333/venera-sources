@@ -1,0 +1,233 @@
+[
+  {
+    "name": "包子漫画",
+    "key": "baozi",
+    "version": "1.1.8-local",
+    "fileName": "baozi.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/baozi.js"
+  },
+  {
+    "name": "漫蛙吧",
+    "key": "manwaba",
+    "version": "1.0.6-local",
+    "fileName": "manwaba.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/manwaba.js"
+  },
+  {
+    "name": "CCC追漫台",
+    "key": "ccc",
+    "version": "1.0.2",
+    "fileName": "ccc.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/ccc.js"
+  },
+  {
+    "name": "カドコミ",
+    "key": "comic_walker",
+    "version": "1.0.3",
+    "fileName": "comic_walker.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/comic_walker.js"
+  },
+  {
+    "name": "comick",
+    "key": "comick",
+    "version": "1.2.1",
+    "fileName": "comick.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/comick.js"
+  },
+  {
+    "name": "拷贝漫画",
+    "key": "copy_manga",
+    "version": "1.4.6",
+    "fileName": "copy_manga.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/copy_manga.js"
+  },
+  {
+    "name": "拷贝漫画M",
+    "key": "copy_manga_multi_accounts",
+    "version": "1.4.2",
+    "fileName": "copy_manga_multi_accounts.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/copy_manga_multi_accounts.js"
+  },
+  {
+    "name": "ehentai",
+    "key": "ehentai",
+    "version": "1.2.0",
+    "fileName": "ehentai.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/ehentai.js"
+  },
+  {
+    "name": "GoDa漫画",
+    "key": "goda",
+    "version": "1.2.1",
+    "fileName": "goda.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/goda.js"
+  },
+  {
+    "name": "嗨皮漫画",
+    "key": "happy",
+    "version": "1.0.0",
+    "fileName": "happy.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/happy.js"
+  },
+  {
+    "name": "H-Comic",
+    "key": "hcomic",
+    "version": "1.0.0",
+    "fileName": "hcomic.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/hcomic.js"
+  },
+  {
+    "name": "hitomi.la",
+    "key": "hitomi",
+    "version": "1.1.2",
+    "fileName": "hitomi.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/hitomi.js"
+  },
+  {
+    "name": "热辣漫画",
+    "key": "hot_manga",
+    "version": "1.0.2",
+    "fileName": "hot_manga.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/hot_manga.js"
+  },
+  {
+    "name": "爱看漫",
+    "key": "ikmmh",
+    "version": "1.0.6",
+    "fileName": "ikmmh.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/ikmmh.js"
+  },
+  {
+    "name": "jcomic.net",
+    "key": "jcomic",
+    "version": "1.0.0",
+    "fileName": "jcomic.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/jcomic.js"
+  },
+  {
+    "name": "禁漫天堂",
+    "key": "jm",
+    "version": "1.4.1",
+    "fileName": "jm.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/jm.js"
+  },
+  {
+    "name": "Kavita",
+    "key": "kavita",
+    "version": "1.1.0",
+    "fileName": "kavita.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/kavita.js"
+  },
+  {
+    "name": "Komga",
+    "key": "komga",
+    "version": "1.0.1",
+    "fileName": "komga.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/komga.js"
+  },
+  {
+    "name": "Komiic",
+    "key": "Komiic",
+    "version": "1.0.4",
+    "fileName": "komiic.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/komiic.js"
+  },
+  {
+    "name": "Lanraragi",
+    "key": "lanraragi",
+    "version": "1.2.0",
+    "fileName": "lanraragi.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/lanraragi.js"
+  },
+  {
+    "name": "MangaDex",
+    "key": "manga_dex",
+    "version": "1.2.0",
+    "fileName": "manga_dex.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/manga_dex.js"
+  },
+  {
+    "name": "漫画柜",
+    "key": "ManHuaGui",
+    "version": "1.2.1",
+    "fileName": "manhuagui.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/manhuagui.js"
+  },
+  {
+    "name": "漫画人",
+    "key": "manhuaren",
+    "version": "1.0.0",
+    "fileName": "manhuaren.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/manhuaren.js"
+  },
+  {
+    "name": "漫画1234",
+    "key": "mh1234",
+    "version": "1.1.0",
+    "fileName": "mh1234.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/mh1234.js"
+  },
+  {
+    "name": "18漫画",
+    "key": "mh18",
+    "version": "1.0.0",
+    "fileName": "mh18.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/mh18.js"
+  },
+  {
+    "name": "漫小肆",
+    "key": "mxs",
+    "version": "1.0.0",
+    "fileName": "mxs.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/mxs.js"
+  },
+  {
+    "name": "MYCOMIC",
+    "key": "mycomic",
+    "version": "1.1.0",
+    "fileName": "mycomic.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/mycomic.js"
+  },
+  {
+    "name": "nhentai",
+    "key": "nhentai",
+    "version": "1.3.0",
+    "fileName": "nhentai.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/nhentai.js"
+  },
+  {
+    "name": "Picacg",
+    "key": "picacg",
+    "version": "1.0.6",
+    "fileName": "picacg.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/picacg.js"
+  },
+  {
+    "name": "少年ジャンプ＋",
+    "key": "shonen_jump_plus",
+    "version": "1.1.1",
+    "fileName": "shonen_jump_plus.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/shonen_jump_plus.js"
+  },
+  {
+    "name": "紳士漫畫",
+    "key": "wnacg",
+    "version": "1.0.8",
+    "fileName": "wnacg.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/wnacg.js"
+  },
+  {
+    "name": "优酷漫画",
+    "key": "ykmh",
+    "version": "1.0.1",
+    "fileName": "ykmh.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/ykmh.js"
+  },
+  {
+    "name": "再漫画",
+    "key": "zaimanhua",
+    "version": "1.0.2",
+    "fileName": "zaimanhua.js",
+    "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/zaimanhua.js"
+  }
+]
