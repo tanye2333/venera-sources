@@ -1,0 +1,31 @@
+name: 同步漫画源索引
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.js'
+      - 'update-index.mjs'
+      - '.github/workflows/index.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: venera-index-main
+  cancel-in-progress: false
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: node update-index.mjs
+      - name: 保存索引与更新地址
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- '*.js' index.json
+          if ! git diff --cached --quiet; then
+            git commit -m '同步漫画源索引'
+            git push
+          fi
