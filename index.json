@@ -16,21 +16,21 @@
   {
     "name": "CCC追漫台",
     "key": "ccc",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "fileName": "ccc.js",
     "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/ccc.js"
   },
   {
     "name": "カドコミ",
     "key": "comic_walker",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "fileName": "comic_walker.js",
     "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/comic_walker.js"
   },
   {
     "name": "comick",
     "key": "comick",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "fileName": "comick.js",
     "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/comick.js"
   },
@@ -93,7 +93,7 @@
   {
     "name": "爱看漫",
     "key": "ikmmh",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "fileName": "ikmmh.js",
     "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/ikmmh.js"
   },
@@ -142,7 +142,7 @@
   {
     "name": "MangaDex",
     "key": "manga_dex",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "fileName": "manga_dex.js",
     "url": "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/manga_dex.js"
   },
