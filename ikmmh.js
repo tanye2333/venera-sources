@@ -713,7 +713,7 @@ class Ikm extends ComicSource {
   // 基础配置
   name = "爱看漫";
   key = "ikmmh";
-  version = "1.0.7";
+  version = "1.0.8";
   minAppVersion = "1.0.0";
   url = "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/ikmmh.js";
   // 常量定义
@@ -1028,6 +1028,9 @@ class Ikm extends ComicSource {
   search = {
     load: async (keyword, options, page) => {
       const res = await Network.get(`${Ikm.baseUrl}/search?searchkey=${encodeURIComponent(keyword)}`);
+      if (res.status === 403 && /当前区域禁止访问|region has been denied/i.test(res.body)) {
+        throw new Error("爱看漫限制当前网络所在地区访问（HTTP 403）");
+      }
       if (res.status !== 200) throw new Error(`爱看漫搜索失败（HTTP ${res.status}）`);
       const document = new HtmlDocument(res.body);
       try {

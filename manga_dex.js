@@ -8,7 +8,7 @@ class MangaDex extends ComicSource {
     // unique id of the source
     key = "manga_dex"
 
-    version = "1.2.1"
+    version = "1.2.2"
 
     minAppVersion = "1.6.0"
 
@@ -457,10 +457,14 @@ class MangaDex extends ComicSource {
                     url += `&title=${encodeURIComponent(keyword)}`
             }
             let res = await fetch(url)
-            if (!res.ok) {
-                throw new Error("Network response was not ok")
+            const body = await res.text()
+            if (body.trimStart().startsWith("<") && /browser verification|checking that you're not a bot/i.test(body)) {
+                throw new Error("MangaDex 要求浏览器验证，当前连接无法在 Venera 内搜索。")
             }
-            let data = await res.json()
+            if (!res.ok || body.trimStart().startsWith("<")) {
+                throw new Error(`MangaDex 搜索接口未返回漫画数据（HTTP ${res.status}）`)
+            }
+            let data = JSON.parse(body)
             let total = data['total']
             let maxPage = Math.ceil(total / this.comicsPerPage)
             let comics = []
