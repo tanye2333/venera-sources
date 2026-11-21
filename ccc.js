@@ -8,7 +8,7 @@ class CCC extends ComicSource {
     // unique id of the source
     key = "ccc"
 
-    version = "1.0.2"
+    version = "1.0.3"
 
     minAppVersion = "1.6.0"
 
@@ -303,26 +303,13 @@ class CCC extends ComicSource {
          * @returns {Promise<{comics: Comic[], maxPage: number}>}
          */
         load: async (keyword, options, page) => {
-            options[0] = options[0] ? "&sort_by=" + options[0] : "&sort_by=updated_at";
-            if (options[1]) {
-                options[1] = "&type=" + options[1];
-            }
-            if (options[2]) {
-                options[2] = "&serial=" + options[2];
-            }
-            if (options[3]) {
-                options[3] = "&updated_at=" + options[3];
-            }
-            if (options[4]) {
-                options[4] = "&literature_form=" + options[4];
-            }
-            if (options[5]) {
-                options[5] = "&comic_type=" + options[5];
-            }
-            if (options[6]) {
-                options[6] = "&publisher=" + options[6];
-            }
-            const url = `https://api.creative-comic.tw/book?page=${page}&rows_per_page=20&keyword=${keyword}&class=2${options.join("")}`;
+            const values = [...options];
+            values[0] = values[0] || "updated_at";
+            const fields = ["sort_by", "type", "serial", "updated_at", "literature_form", "comic_type", "publisher"];
+            const filters = fields.map((field, i) =>
+                values[i] ? `&${field}=${encodeURIComponent(values[i])}` : ""
+            ).join("");
+            const url = `${this.apiUrl}/book?page=${page}&rows_per_page=20&keyword=${encodeURIComponent(keyword)}&class=2${filters}`;
             return await this.parseComics(url);
         },
 

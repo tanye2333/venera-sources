@@ -1,7 +1,7 @@
 class Comick extends ComicSource {
     name = "comick"
     key = "comick"
-    version = "1.2.1"
+    version = "1.2.2"
     minAppVersion = "1.4.0"
     // update url
     url = "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/comick.js"
@@ -459,22 +459,23 @@ class Comick extends ComicSource {
 
     /// search related
     search = {
-        load: async (keyword, options, page) => {
-            let headers = Comick.getRandomHeaders();
-            let url = `https://comick.art/search?q=${keyword}&page=${page}`;
-            let res = await Network.get(url=url, headers=headers);
-            if (res.status !== 200) {
-                throw `Invalid status code: ${res.status}`;
+        loadNext: async (keyword, options, cursor) => {
+            const term = keyword.trim();
+            if (Array.from(term).length < 3) throw new Error("ComicK 搜索至少需要 3 个字符，请输入更完整的书名。");
+            let url = `${this.baseUrl}/search?q=${encodeURIComponent(term)}`;
+            if (cursor) url += `&cursor=${encodeURIComponent(cursor)}`;
+            const res = await Network.get(url, { Accept: "text/html" });
+            if (res.status !== 200) throw new Error(`ComicK 搜索失败（HTTP ${res.status}）`);
+            const document = new HtmlDocument(res.body);
+            try {
+                const state = document.getElementById("sv-data");
+                if (!state) throw new Error("ComicK 搜索页缺少结果数据");
+                const result = JSON.parse(state.text);
+                if (!Array.isArray(result.data)) throw new Error("ComicK 搜索结果格式已变化");
+                return { comics: result.data.map(this.getFormattedManga), next: result.next_cursor || null };
+            } finally {
+                document.dispose();
             }
-            let document = new HtmlDocument(res.body)
-            let jsonData = JSON.parse(document.getElementById('sv-data').text);
-            let mangaList = jsonData.data;
-            if (!Array.isArray(mangaList)) throw "Invalid data format";
-            let maxpage = mangaList.total/mangaList.per_page
-            return {
-                comics: mangaList.map(this.getFormattedManga),
-                maxPage: Math.ceil(maxpage)
-            };
         },
         optionList: []
     }

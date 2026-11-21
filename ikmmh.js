@@ -713,7 +713,7 @@ class Ikm extends ComicSource {
   // 基础配置
   name = "爱看漫";
   key = "ikmmh";
-  version = "1.0.6";
+  version = "1.0.7";
   minAppVersion = "1.0.0";
   url = "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/ikmmh.js";
   // 常量定义
@@ -1027,31 +1027,31 @@ class Ikm extends ComicSource {
   // 搜索功能
   search = {
     load: async (keyword, options, page) => {
+      const res = await Network.get(`${Ikm.baseUrl}/search?searchkey=${encodeURIComponent(keyword)}`);
+      if (res.status !== 200) throw new Error(`爱看漫搜索失败（HTTP ${res.status}）`);
+      const document = new HtmlDocument(res.body);
       try {
-        let res = await Network.get(
-          `${Ikm.baseUrl}/search?searchkey=${encodeURIComponent(keyword)}`,
-          Ikm.webHeaders
-        );
-
-        if (needPassValidator(res.body)) {
-          res = await Network.get(
-            `${Ikm.baseUrl}/search?searchkey=${encodeURIComponent(keyword)}`,
-            Ikm.webHeaders
-          );
+        const comics = [];
+        for (const item of document.querySelectorAll(".classification, li.comic-item")) {
+          const link = item.querySelector("h2 a, a[href*='/book/']");
+          const title = item.querySelector("h2, p.title");
+          if (!link || !title) continue;
+          const image = item.querySelector("img")?.attributes || {};
+          const href = link.attributes.href;
+          comics.push({
+            title: title.text.trim().replace(/~$/, ""),
+            id: href.startsWith("/") ? Ikm.baseUrl + href : href,
+            cover: image["data-src"] || image.src || "",
+            subTitle: item.querySelector(".describe, span.chapter")?.text.trim() || "",
+          });
         }
-
-        let document = new HtmlDocument(res.body);
-        return {
-          comics: document.querySelectorAll("li.comic-item").map((e) => ({
-            title: e.querySelector("p.title").text.split("~")[0],
-            cover: e.querySelector("img").attributes["src"],
-            id: `${Ikm.baseUrl}${e.querySelector("a").attributes["href"]}`,
-            subTitle: e.querySelector("span.chapter").text,
-          })),
-          maxPage: 1,
-        };
-      } catch (err) {
-        throw new Error(`搜索失败：${err.message}`);
+        if (!comics.length && !document.querySelector(".topbar-search, .search-box") &&
+            !(document.querySelector("title")?.text || "").includes("搜索")) {
+          throw new Error("爱看漫没有返回搜索结果页");
+        }
+        return { comics, maxPage: 1 };
+      } finally {
+        document.dispose();
       }
     },
     onThumbnailLoad: Ikm.thumbConfig,

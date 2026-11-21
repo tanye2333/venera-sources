@@ -1,7 +1,7 @@
 class ComicWalker extends ComicSource {
   name = "カドコミ";
   key = "comic_walker";
-  version = "1.0.3";
+  version = "1.0.4";
   minAppVersion = "1.6.0";
   url =
     "https://raw.githubusercontent.com/tanye2333/venera-sources/refs/heads/main/comic_walker.js";
@@ -38,42 +38,28 @@ class ComicWalker extends ComicSource {
     return res.resources.access_token;
   }
 
-  async request(url, headers, method = "GET", data) {
-    let response;
-    if (method === "GET") {
-      response = await Network.get(url, headers);
-    } else if (method === "POST") {
-      response = await Network.post(url, headers, data);
-    } else {
-      throw new Error(`Unsupported method: ${method}`);
+  async request(url, headers, method = "GET", data, allowRefresh = true) {
+    const response = method === "GET"
+      ? await Network.get(url, headers)
+      : await Network.post(url, headers, data);
+    if (response.status === 204) return response;
+    const label = url === `${this.api_base}/v1/users` ? "匿名登录" : "请求";
+    let body;
+    try {
+      body = JSON.parse(response.body);
+    } catch (_) {
+      throw new Error(`カドコミ${label}返回非 JSON 页面（HTTP ${response.status}）`);
     }
-    if (
-      response.status === 204
-    ) {
-      return response;
-    }
-    response = JSON.parse(response.body);
-    if (
-      response.code === "invalid_request_parameter" ||
-      response.code === "free_daily_reward_quota_exceeded" ||
-      response.code === "unauthorized"
-    ) {
+    const needsToken = body.code === "unauthorized" ||
+      (body.code === "invalid_request_parameter" && /Authorization/i.test(body.message || ""));
+    if (allowRefresh && needsToken && url !== `${this.api_base}/v1/users`) {
       await this.refreshToken();
-      if (method === "GET") {
-        response = await Network.get(url, this.headers);
-      } else if (method === "POST") {
-        response = await Network.post(url, this.headers, data);
-      } else {
-        throw new Error(`Unsupported method: ${method}`);
-      }
-      if (
-        response.status === 204
-      ) {
-        return response;
-      }
-      response = JSON.parse(response.body);
+      return this.request(url, this.headers, method, data, false);
     }
-    return response;
+    if (response.status < 200 || response.status >= 300 || needsToken || body.code === "free_daily_reward_quota_exceeded") {
+      throw new Error(`カドコミ${label}失败（HTTP ${response.status}）：${body.message || body.code || ""}`);
+    }
+    return body;
   }
 
   async init() {
@@ -171,7 +157,7 @@ class ComicWalker extends ComicSource {
   search = {
     load: async (keyword, _, page) => {
       const res = await this.request(
-        `${this.api_base}/v1/search/comics?keyword=${keyword}&limit=20&offset=${
+        `${this.api_base}/v1/search/comics?keyword=${encodeURIComponent(keyword)}&limit=20&offset=${
           (page - 1) * 20
         }`,
         this.headers,

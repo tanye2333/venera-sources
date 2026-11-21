@@ -8,7 +8,7 @@ class MangaDex extends ComicSource {
     // unique id of the source
     key = "manga_dex"
 
-    version = "1.2.0"
+    version = "1.2.1"
 
     minAppVersion = "1.6.0"
 
@@ -385,7 +385,7 @@ class MangaDex extends ComicSource {
          */
         load: async (keyword, options, page) => {
             let order = ""
-            if (options[0] !== "any") {
+            if (options[0] && options[0] !== "any") {
                 order = {
                     "popular": `order[followedCount]=desc&`,
                     "recent": `order[createdAt]=desc&`,
@@ -395,11 +395,11 @@ class MangaDex extends ComicSource {
                 }[options[0]]
             }
             let contentRating = ""
-            if (options[1] !== "any") {
+            if (options[1] && options[1] !== "any") {
                 contentRating = `contentRating[]=${options[1]}&`
             }
             let status = ""
-            if (options[2] !== "any") {
+            if (options[2] && options[2] !== "any") {
                 status = `status[]=${options[2]}&`
             }
             let url = `https://api.mangadex.org/manga?` +
@@ -454,7 +454,7 @@ class MangaDex extends ComicSource {
                 }
                 keyword = reformated.join(" ")
                 if (keyword !== "")
-                    url += `&title=${keyword}`
+                    url += `&title=${encodeURIComponent(keyword)}`
             }
             let res = await fetch(url)
             if (!res.ok) {
